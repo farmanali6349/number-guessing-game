@@ -188,7 +188,7 @@ document.querySelector('.start').addEventListener('click', () => {
 // 5.2 Game Resume Popup
 // 5.2.1 Open
 document.querySelector('.game-rules').addEventListener('click', () => {
-    document.querySelector('.popup').style.display = 'flex';
+    document.querySelector('.popup').style.display = 'block';
     document.querySelector('.resume-game').style.display = 'block';
 })
 
@@ -202,7 +202,7 @@ document.querySelector('.resume').addEventListener('click', () => {
 // 5.3 Game Lose Popup
 // 5.3.1 Open
 function openLosePopup() {
-    document.querySelector('.popup').style.display = 'flex';
+    document.querySelector('.popup').style.display = 'block';
     document.querySelector('.lose-game').style.display = 'block'
 }
 
@@ -218,7 +218,7 @@ document.querySelector('.try-again').addEventListener('click', ()=> {
 function openWinPopup(num) {
 
     document.querySelector('.guess-number').innerText = `${num.toString().padStart(2, '0')}`;
-    document.querySelector('.popup').style.display = 'flex';
+    document.querySelector('.popup').style.display = 'block';
     document.querySelector('.win-game').style.display = 'block'
 }
 
