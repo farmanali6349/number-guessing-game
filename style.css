@@ -1,0 +1,435 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Archivo';
+    color: #f1f1f1;
+}
+
+/* FONTS */
+@font-face {
+    font-family: 'Clash Display';
+    src: url(fonts/ClashDisplay-Variable.ttf);
+}
+
+@font-face {
+    font-family: 'Archivo';
+    src: url(fonts/Archivo-Variable.ttf);
+}
+
+
+/* Remove up and down arrow of input type number */
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Clash Display';
+}
+
+/* MAIN-CONTAINER (to control the width of the body) */
+.main-container {
+    max-width: 974px;
+    margin: auto;
+}
+
+/* BUTTON */
+.btn {
+    background-color: #424242;
+    padding: 8px 16px;
+    color: #f1f1f1;
+    outline: none;
+    border: 1px solid #636363;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s background;
+    font-size: 16px;
+    width: fit-content;
+    min-width: 200px;
+    font-size: 20px;
+}
+
+.btn:hover {
+    background-color: #333333;
+}
+
+/* BODY */
+body {
+    width: 100%;
+    background-color: #212121;
+}
+
+
+/* Header */
+header {
+    width: 100%;
+    padding: 48px 16px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+header h2 {
+    font-weight: 500;
+    font-size: 40px;
+    text-align: center;
+}
+
+/* GAME SECTION */
+
+#game {
+    width: 100%;
+    padding: 32px 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #f1f1f1;
+    position: relative;
+}
+
+#game>.main-container {
+    width: fit-content;
+}
+
+/* DASHBOARD */
+.dashboard {
+    display: grid;
+    grid-template-columns: 600px 150px 150px;
+    gap: 10px;
+    margin-top: 32px;
+}
+
+.levels ul {
+    padding: 8px 16px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 10px;
+    background-color: #111111;
+    border: 1px solid #636363;
+}
+
+.levels ul li {
+    padding: 4px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.levels ul li:hover {
+    background-color: #42424273;
+}
+
+.levels ul li.select {
+    background-color: #424242;
+    border: 1px solid #636363;
+}
+
+.lives,
+.scores {
+    background-color: #111111;
+    border: 1px solid #636363;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    border-radius: 10px;
+}
+
+
+.lives h3,
+.scores h3 {
+    font-size: 32px;
+}
+
+.lives span,
+.scores span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.lives {
+    grid-column: 2 / 3;
+    grid-row: 1/ span 2;
+}
+
+.scores {
+    grid-column: 3 / 4;
+    grid-row: 1/ span 2;
+}
+
+
+
+
+.dashboard {
+    position: relative;
+}
+
+.dashboard form {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+}
+
+.dashboard input[type="number"] {
+    padding: 16px;
+    font-size: 48px;
+    background-color: #111111;
+    border: 1px solid #636363;
+    outline: none;
+    font-family: 'Clash Display';
+    width: 100%;
+    border-radius: 10px;
+
+}
+
+.dashboard input::placeholder {
+    color: #42424257;
+}
+
+.dashboard input[type="submit"] {
+    position: absolute;
+    left: 0px;
+    bottom: -66px;
+}
+
+
+.hint {
+    margin-top: 98px;
+}
+
+.hint h3 {
+    font-weight: 500;
+    font-size: 32px;
+}
+
+.hint p {
+    color: #ff4f57;
+    font-size: 20px;
+}
+
+.hint p span {
+    font-weight: bold;
+    color: #ff4f57;
+}
+
+.history {
+    margin-top: 32px;
+}
+
+.history h3 {
+    font-weight: 500;
+    font-size: 32px;
+}
+
+.history .result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: fit-content;
+    margin-top: 16px;
+}
+
+.history .result h4 {
+    font-size: 30px;
+}
+
+.won-games,
+.lose-games,
+.games-performance {
+    min-width: 150px;
+    height: 180px;
+    background-color: #111111;
+    border: 1px solid #636363;
+    padding: 16px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.won-games img,
+.lose-games img,
+.games-performance img {
+    width: 60px;
+}
+
+.won-games h4,
+.lose-games h4,
+.games-performance h4 {
+    font-size: 32px;
+}
+
+.won-games h3,
+.lose-games h3,
+.games-performance h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ------------------------------- POPUP ------------------------------ */
+.popup {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(77, 77, 77, 0.356);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.child-div {
+    width: 100%;
+    padding: 64px;
+    background-color: #111111;
+    border-radius: 10px;
+    border: 1px solid #636363;
+    position: relative;
+    display: none;
+}
+
+.start-game {
+    display: block;
+}
+
+/* .child-div .img {
+    width: 25px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+} */
+
+.child-div h3 {
+    font-size: 48px;
+}
+
+.child-div p {
+    font-size: 24px;
+    margin: 16px 0;
+}
+
+.child-div button {
+    margin: 16px 0;
+}
+
+/* Footer */
+footer {
+    padding: 8px;
+    text-align: center;
+}
+
+
+/* ------------------------------------------------- RESPONSIVE ---------------------------------------------------- */
+@media screen and (max-width: 1000px) {
+    #game>.main-container {
+        width: 100%;
+        padding: 0px 16px;
+    }
+
+    /* DASHBOARD */
+    .dashboard {
+        grid-template-columns: auto auto auto auto;
+    }
+
+    .levels {
+        grid-row: 1;
+        grid-column: 1 / 5;
+    }
+
+    .lives {
+        grid-row: 2;
+        grid-column: 1 / span 2;
+    }
+
+    .scores {
+        grid-row: 2;
+        grid-column: 3 / span 2;
+    }
+
+    .dashboard form {
+        grid-row: 3;
+        grid-column: 1 / 5;
+    }
+
+    .dashboard input[type="submit"] {
+        position: static;
+        margin-top: 16px;
+        width: 50%;
+    }
+
+    .hint {
+        margin-top: 32px;
+    }
+
+    .result {
+        flex-wrap: wrap;
+    }
+
+    .popup {
+        display: block;
+    }
+
+
+}
+
+/* FOR MOBILE PHONES */
+@media screen and (max-width: 480px) {
+    header {
+        padding: 32px 16px;
+    }
+
+    header h2 {
+        font-size: 32px;
+    }
+
+    .btn {
+        font-size: 18px;
+    }
+
+    .levels ul li {
+        font-size: 18px;
+    }
+
+    .dashboard input[type="number"]  {
+        font-size: 32px;
+    }
+
+    .hint {
+        margin-top: 32px;
+    }
+
+    .popup {
+        padding: 24px;
+        display: block;
+    }
+
+
+    .child-div {
+        padding: 48px;
+    }
+
+    /* POPUPS */
+
+    .child-div p {
+        font-size: 18px;
+    }
+}
