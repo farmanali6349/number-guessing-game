@@ -306,6 +306,10 @@ header h2 {
     display: none;
 }
 
+.child-div h3 {
+    font-size: 32px;
+}
+
 .start-game {
     display: block;
 }
