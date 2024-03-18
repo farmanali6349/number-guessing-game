@@ -227,6 +227,50 @@ header h2 {
     color: #ff4f57;
 }
 
+.previous-guesses h3{
+    margin-top: 16px;
+}
+
+.hint .guesses {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    padding: 16px 0;
+}
+.hint .guesses div {
+    padding: 8px;
+    border: 1px solid #636363;
+    background-color: #424242;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.hint .guesses .attempt-number {
+    display: flex;
+    padding: 5px;
+    background: #111111;
+    border: 1px solid #636363;
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+}
+
+.hint .guesses div h4 {
+    font-size: 24px;
+    font-weight: 500;
+}
 .history {
     margin-top: 32px;
 }
@@ -306,10 +350,6 @@ header h2 {
     display: none;
 }
 
-.child-div h3 {
-    font-size: 32px;
-}
-
 .start-game {
     display: block;
 }
@@ -344,6 +384,11 @@ footer {
 
 /* ------------------------------------------------- RESPONSIVE ---------------------------------------------------- */
 @media screen and (max-width: 1000px) {
+    .popup {
+        display: flex;
+        padding: 0 48px;
+    }
+
     #game>.main-container {
         width: 100%;
         padding: 0px 16px;
@@ -388,11 +433,22 @@ footer {
         flex-wrap: wrap;
     }
 
-    .popup {
-        display: block;
+    
+
+
+
+}
+
+@media screen and (max-width: 612px) {
+
+    .child-div h3 {
+        font-size: 32px;
     }
 
-
+    .popup {
+        padding: 48px;
+        display: block;
+    }
 }
 
 /* FOR MOBILE PHONES */
@@ -435,5 +491,13 @@ footer {
 
     .child-div p {
         font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 412px) {
+
+    .child-div h3 {
+        margin-top: 16px;
+        font-size: 24px;
     }
 }
