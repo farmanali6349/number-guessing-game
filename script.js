@@ -1,10 +1,11 @@
-// NUMBER GUESSING GAME
+// ------------------------------------------ NUMBER GUESSING GAME ----------------------------------------------------
 
-// Initializing the variables
+// INITIALIZING THE VARIABLES
 let gameStart = false;
 let performance = 0;
 let number = 0;
 let lives = 0;
+let previousGuesses = [];
 
 let gameLevel = 'easy';
 let scores = 0;
@@ -15,40 +16,48 @@ let numberOfLostGames = 0;
 
 
 
-// 1- START GAME
+// 1.0 START GAME
 function startGame() {
 
-    // Retrieving Game Data
+    // 1.1 Retrieving Game Data
     retrieveGameData();
 
-    // Update Level Menu
+    // 1.2 Reset the Previous Gusses
+    previousGuesses = [];
+
+    // Hide or Display Previous Guesses Div
+    clearGuessesDiv();
+    hidePreviousGuessesDiv();
+
+
+    // 1.3 Update Level Menu
     updateLevelMenu(gameLevel);
 
-    // clearInput
-    document.querySelector('input[type="number"]').value = '';
+    // 1.4 clearInput
+    clearInputField();
     
-    // Update Lives
+    // 1.5 Update Lives
     updateLives(gameLevel);
 
 
-    // Update HINT para
+    // 1.6 Update HINT para
     document.querySelector('.hint-para').innerHTML = `Here lies hints for your guesses.`
 
-    // Reset Lives Box Borders
+    // 1.7 Reset Lives Box Borders
     resetLivesBoxBorder()
     
     
-    // Update Score Box
+    // 1.8 Update Score Box
     updateScoreBox(scores);
 
 
-    // Calculate Performance
+    // 1.9 Calculate Performance
     calculatePerformance(numberOfWonGames, numberOfLostGames);
 
-    // update Performance Box
+    // 1.10 update Performance Box
     updatePerformanceSection(numberOfWonGames, numberOfLostGames, performance)
 
-    // Generate Number
+    // 1.11 Generate Number
     number = Math.floor(Math.random() * 100 + 1);
     gameStart = true;
 
@@ -56,7 +65,7 @@ function startGame() {
 
 
 
-// 2- GAME LEVELS
+// 2.0 GAME LEVELS
 // 2.1 Select Game Levels
 
 const levels = document.querySelectorAll('.levels ul li');
@@ -89,7 +98,7 @@ function updateLevelMenu(levelOfGame) {
 
 
 
-// 3- GAME LIVES
+// 3.0 GAME LIVES
 // 3.1 Update Game Lives
 function updateLives(gameLevel) {
     if (gameLevel === 'easy') {
@@ -133,7 +142,8 @@ function turnRedLivesBoxBorder() {
 }
 
 
-// 4- GUESS THE NUMBER
+// 4.0 GUESS THE NUMBER
+
 // 4.1 Guess The Number
 function guessTheNumber(event) {
     event.preventDefault();
@@ -155,10 +165,12 @@ function guessTheNumber(event) {
                 storeGameData(gameLevel, scores, numberOfWonGames, numberOfLostGames);
             } else if (guess < number) {
                 document.querySelector('.hint-para').innerHTML = `Your Guess <span>${guess}</span> is LESS than the number to be guessed <span>Try Again.</span>`;
+                addPreviousGuess({"guessNumber": guess, "highOrLow": "low"});
                 decreaseLife();
 
             } else if (guess > number) {
                 document.querySelector('.hint-para').innerHTML = `Your Guess <span>${guess}</span> is GREATER than the number to be guessed <span>Try Again.</span>`;
+                addPreviousGuess({"guessNumber": guess, "highOrLow": "high"});
                 decreaseLife();
             }
         } else {
@@ -175,7 +187,7 @@ function guessTheNumber(event) {
 }
 
 
-// 5- POPUPS
+// 5.0 POPUPS
 
 // 5.1 Start Game Popup
 document.querySelector('.start').addEventListener('click', () => {
@@ -188,6 +200,9 @@ document.querySelector('.start').addEventListener('click', () => {
 // 5.2 Game Resume Popup
 // 5.2.1 Open
 document.querySelector('.game-rules').addEventListener('click', () => {
+    if(window.innerWidth > 570) {
+        document.querySelector('.popup').style.display = 'flex';
+    }
     document.querySelector('.popup').style.display = 'block';
     document.querySelector('.resume-game').style.display = 'block';
 })
@@ -311,4 +326,61 @@ function retrieveGameData() {
     }
 
 
+}
+
+
+// 9.0 HANDLING THE PREVIOUS GUSSES
+
+const previousGuessesDiv = document.querySelector('.previous-guesses');
+const guessesDiv = previousGuessesDiv.querySelector('.guesses');
+
+// 9.1 Adding Previous Guesses 
+function addPreviousGuess({guessNumber, highOrLow}) {
+    previousGuesses.push({guessNumber, highOrLow});
+
+    if(previousGuesses.length > 0) {
+        displayPreviousGuesesDiv();
+    }
+}
+
+// 9.1 Display Previous Guesses Div
+function displayPreviousGuesesDiv() {
+
+    clearGuessesDiv();
+    previousGuesses.forEach((guess, index)=> {
+        
+        const guessDiv = document.createElement('div');
+        const heading4 = document.createElement('h4');
+        heading4.innerText = guess["guessNumber"];
+
+        const span = document.createElement('span');
+        span.innerText = guess["highOrLow"];
+
+        const attemptNumberSpan = document.createElement('span');
+        attemptNumberSpan.classList.add('attempt-number');
+        attemptNumberSpan.innerText = index + 1;
+
+        guessDiv.appendChild(heading4);
+        guessDiv.appendChild(span);
+        guessDiv.appendChild(attemptNumberSpan);
+        guessesDiv.appendChild(guessDiv);
+
+    })
+    previousGuessesDiv.style.display = 'block';
+}
+
+// 9.2 Hide Previous Guesses Div
+function hidePreviousGuessesDiv() {
+    previousGuessesDiv.style.display = 'none';
+}
+
+// 9.3 Clear Guess Div
+function clearGuessesDiv() {
+    guessesDiv.innerHTML = '';
+}
+
+
+// 10.0 Clear Input
+function clearInputField() {
+    document.querySelector('input[type="number"]').value = '';
 }
